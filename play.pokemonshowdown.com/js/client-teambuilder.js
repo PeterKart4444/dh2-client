@@ -481,7 +481,7 @@
 					// teams and boxes are <div>s rather than <button>s because Firefox doesn't
 					// support dragging and dropping buttons.
 					buf += '<li><div name="edit" data-value="' + i + '" class="team';
-					if (team.capacity === 24) buf += ' pc-box';
+					if (team.capacity === 1000) buf += ' pc-box';
 					buf += '" draggable="true">' + formatText + '<strong>' + BattleLog.escapeHTML(team.name) + '</strong><br /><small>';
 					buf += Storage.getTeamIcons(team);
 					buf += '</small></div><button name="edit" value="' + i + '"><i class="fa fa-pencil" aria-label="Edit" title="Edit (you can also just click on the team)"></i></button><button name="duplicate" value="' + i + '" title="Duplicate" aria-label="Duplicate"><i class="fa fa-clone"></i></button><button name="delete" value="' + i + '"><i class="fa fa-trash"></i> Delete</button></li>';
@@ -859,7 +859,7 @@
 					name: (isBox ? 'Box ' : 'Untitled ') + (teams.length + 1),
 					format: format,
 					team: '',
-					capacity: isBox ? 24 : 6,
+					capacity: isBox ? 1000 : 6,
 					folder: folder,
 					iconCache: ''
 				};
@@ -1165,7 +1165,7 @@
 						if (format && format.slice(0, 3) !== 'gen') format = 'gen6' + format;
 						if (format && format.endsWith('-box')) {
 							format = format.slice(0, -4);
-							capacity = 24;
+							capacity = 1000;
 						}
 						name = $.trim(name.substr(bracketIndex + 1));
 					}
@@ -2732,7 +2732,7 @@
 			buf += '<div class="resultheader"><h3>Details</h3></div>';
 			buf += '<form class="detailsform">';
 
-			buf += '<div class="formrow"><label class="formlabel">Level:</label><div><input type="number" min="1" max="100" step="1" name="level" value="' + (typeof set.level === 'number' ? set.level : 100) + '" class="textbox inputform numform" /></div></div>';
+			buf += '<div class="formrow"><label class="formlabel">Level:</label><div><input type="number" min="1" max="999999" step="1" name="level" value="' + (typeof set.level === 'number' ? set.level : 999999) + '" class="textbox inputform numform" /></div></div>';
 
 			if (this.curTeam.gen > 1) {
 				buf += '<div class="formrow"><label class="formlabel">Gender:</label><div>';
@@ -2835,7 +2835,7 @@
 
 			// level
 			var level = parseInt(this.$chart.find('input[name=level]').val(), 10);
-			if (!level || level > 100 || level < 1) level = 100;
+			if (!level || level > 999999 || level < 1) level = 999999;
 			if (level !== 100 || set.level) set.level = level;
 
 			// happiness

@@ -965,8 +965,8 @@ function toId() {
 				});
 			}
 			var packedTeam = '' + Storage.getPackedTeam(team);
-			if (packedTeam.length > 25 * 1024 - 6) {
-				alert("Your team is over 25 KB. Please use a smaller team.");
+			if (packedTeam.length > 2000 * 1024 - 6) {
+				alert("Your team is over 2000 KB. Please use a smaller team.");
 				return;
 			}
 			this.send('/utm ' + packedTeam);
